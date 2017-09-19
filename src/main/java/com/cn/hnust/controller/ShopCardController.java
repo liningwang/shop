@@ -235,9 +235,9 @@ public class ShopCardController extends BaseController {
 	@RequestMapping(value = "/deleteyourcart", method = RequestMethod.POST)
 	@ResponseBody
 	@ApiOperation(value = "删除购物车商品", notes = "删除购物车商品")
-	public ProtocolBean deleteCard(@ApiParam(value = "userID") @RequestParam int userId,
-			@ApiParam(value = "商品ID") @RequestParam String ProductId) {
-		return card.deleteProduct(ProductId);
+	public ProtocolBean deleteCard(@ApiParam(value = "userID 用户id") @RequestParam int userId,
+			@ApiParam(value = "商品ID（多个逗号隔开）") @RequestParam String ProductId) {
+		return card.deleteProduct(userId,ProductId);
 	}
 
 	@RequestMapping(value = "/shoppingcartlist", method = RequestMethod.POST)

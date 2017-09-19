@@ -21,6 +21,7 @@ import com.cn.hnust.pojo.HomePage;
 import com.cn.hnust.pojo.Product;
 import com.cn.hnust.pojo.ProductDetail;
 import com.cn.hnust.pojo.ProtocolBean;
+import com.cn.hnust.pojo.SecondLevel;
 import com.cn.hnust.pojo.SlidPic;
 import com.cn.hnust.pojo.UserProduct;
 import com.cn.hnust.service.IHomePageService;
@@ -71,6 +72,8 @@ public class HomePagerServiceImpl implements IHomePageService{
 	public ProtocolBean getProductDetail(int shopId) {
 		// TODO Auto-generated method stub
 		ProductDetail map = product.selectProductDetailById(shopId);
+		int count = comment.selectCountComment(shopId);
+		map.setEvaluateNumber(count);
 		System.out.println(map.toString());
 		ProtocolBean bean = new ProtocolBean();
 		bean.setData(map);
@@ -117,6 +120,37 @@ public class HomePagerServiceImpl implements IHomePageService{
 		bean.setData(map);
 		bean.setResultCode(0);
 		return bean;
+	}
+	@Override
+	public int selectCountComment(int shopId) {
+		// TODO Auto-generated method stub
+		return comment.selectCountComment(shopId);
+	}
+	@Override
+	public List<Product> getAllProduct(int page, int rows) {
+		// TODO Auto-generated method stub
+		page = page * rows;
+		return product.selectByLimit(page, rows);
+	}
+	@Override
+	public int getProductCount() {
+		// TODO Auto-generated method stub
+		return product.selectProductCount();
+	}
+	@Override
+	public int deleteProductById(int shopId) {
+		// TODO Auto-generated method stub
+		return product.deleteByPrimaryKey(shopId);
+	}
+	@Override
+	public List<ClassiFy> getAllFirstClass() {
+		// TODO Auto-generated method stub
+		return classify.selectAllFirstClass();
+	}
+	@Override
+	public List<SecondLevel> getAllSecondClass() {
+		// TODO Auto-generated method stub
+		return second_level.selectAllSecondClass();
 	}
 
 	

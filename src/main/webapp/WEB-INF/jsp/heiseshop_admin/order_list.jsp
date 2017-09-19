@@ -152,7 +152,7 @@
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
-					<c:when test="${page!=pageNum}">
+					<c:when test="${page<=pageNum}">
 						<a
 							href="orders?page=${page+1}&rows=10">下一页</a>
 					</c:when>
@@ -160,7 +160,8 @@
 						<a>最后一页</a>
 					</c:otherwise>
 				</c:choose>
-				<a>第一页</a> <a>1</a> <a>最后一页</a>
+				<a href="orders?page=0&rows=10">第一页</a> 
+				<a href="orders?page=${pageNum}&rows=10">最后一页</a>
 			</div>
 		</div>
 	</div>

@@ -122,8 +122,10 @@ public class PersonController {
 			out.flush();
 			out.close();
 	
-			String localIp=request.getLocalAddr();//锟斤拷取锟斤拷锟斤拷ip
-			int localPort=request.getLocalPort();//锟斤拷取锟斤拷锟截的端匡拷
+//	        String localIp=request.getRemoteAddr();//锟斤拷取锟斤拷锟斤拷ip
+	        String localIp = "114.215.46.63";
+//	        int localPort=request.getLocalPort();//锟斤拷取锟斤拷锟截的端匡拷
+		    int localPort = 80;
 				
 			String path1 = request.getSession().getServletContext().getContextPath();
 			System.out.println("ip " + localIp + " port" + localPort + " path "+path1 );
@@ -156,9 +158,10 @@ public class PersonController {
 	            tempFile.createNewFile();  
 	        }  
 	        file.transferTo(tempFile);  
-	        String localIp=request.getLocalAddr();//锟斤拷取锟斤拷锟斤拷ip
-			int localPort=request.getLocalPort();//锟斤拷取锟斤拷锟截的端匡拷
-		
+//	        String localIp=request.getRemoteAddr();//锟斤拷取锟斤拷锟斤拷ip
+	        String localIp = "114.215.46.63";
+//	        int localPort=request.getLocalPort();//锟斤拷取锟斤拷锟截的端匡拷
+		    int localPort = 80;
 			String path1 = request.getSession().getServletContext().getContextPath();
 			System.out.println("ip " + localIp + " port" + localPort + " path "+path1 );
 			String result = "http://"+localIp+":"+localPort+path1+"/" + "images/" + tempFile.getName();

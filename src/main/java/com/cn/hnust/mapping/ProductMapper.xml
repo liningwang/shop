@@ -27,6 +27,7 @@
 		<result column="shopSalesVolume" property="shopsalesvolume"
 			jdbcType="INTEGER" />
 		<result column="shopType" property="shoptype" jdbcType="INTEGER" />
+		<result column="shopCount" property="shopCount" jdbcType="INTEGER" />
 		<result column="shopPictureUrl" property="shoppictureurl"
 			jdbcType="VARCHAR" />
 		<result column="shopGraphicDetails" property="shopgraphicdetails"
@@ -73,7 +74,7 @@
 	</sql>
 	<sql id="Base_Detail_List">
 		product.shopId, product.shopTitle, product.shopPrice, product.shopFreight,
-		product.shopSalesVolume,
+		product.shopSalesVolume,product.shopCount,
 		product.shopType, product.shopPictureUrl,
 		product.shopGraphicDetails, product.classifyId, product.twoClassifyId, product.recommend,
 		comment.evaluateTime,comment.evaluateGrade,
@@ -106,7 +107,11 @@
 		from product
 		limit #{page,jdbcType=INTEGER}, #{rows,jdbcType=INTEGER}
 	</select>
-
+	<select id="selectProductCount" resultType="java.lang.Integer">
+		select
+	    count(*)
+		from product
+	</select>
 	<select id="selectByUserIdLimit" resultMap="ShopCard">
 		select
 		<include refid="Base_ShopCard_List" />
@@ -175,6 +180,9 @@
 			<if test="recommend != null">
 				recommend,
 			</if>
+			<if test="shopCount != null">
+				shopCount,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="shopid != null">
@@ -210,6 +218,9 @@
 			<if test="recommend != null">
 				#{recommend,jdbcType=INTEGER},
 			</if>
+			<if test="shopCount != null">
+				#{shopCount,jdbcType=INTEGER},
+			</if>
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="com.cn.hnust.pojo.Product">
@@ -244,6 +255,27 @@
 			</if>
 			<if test="recommend != null">
 				recommend = #{recommend,jdbcType=INTEGER},
+			</if>
+			<if test="shopCount != null">
+				shopCount = #{shopCount,jdbcType=INTEGER},
+			</if>
+		</set>
+		where shopId = #{shopid,jdbcType=INTEGER}
+	</update>
+		<update id="updateShopCountByPrimaryKey">
+		update product
+		<set>
+			<if test="shopCount != null">
+				shopCount = shopCount + #{shopCount,jdbcType=INTEGER},
+			</if>
+		</set>
+		where shopId = #{shopid,jdbcType=INTEGER}
+	</update>
+	<update id="updateShopsalesvolumeByPrimaryKey">
+		update product
+		<set>
+			<if test="shopsalesvolume != null">
+				shopSalesVolume = shopSalesVolume + #{shopsalesvolume,jdbcType=INTEGER},
 			</if>
 		</set>
 		where shopId = #{shopid,jdbcType=INTEGER}

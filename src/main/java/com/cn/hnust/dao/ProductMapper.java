@@ -29,4 +29,7 @@ public interface ProductMapper {
     ProductDetail selectProductDetailById(@Param("shopId") int shopId);
     List<ShopCard> selectByUserIdLimit(@Param("userId") int userId,@Param("page") int page,
     		@Param("rows") int rows);
+    int updateShopCountByPrimaryKey(@Param("shopCount") int shopCount,@Param("shopid") int shopid);
+    int updateShopsalesvolumeByPrimaryKey(@Param("shopsalesvolume") int shopsalesvolume,@Param("shopid") int shopid);
+    int selectProductCount();
 }

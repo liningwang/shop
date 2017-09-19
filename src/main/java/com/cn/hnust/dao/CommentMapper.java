@@ -22,4 +22,5 @@ public interface CommentMapper {
     
     List<CommentDetail> selectAllByShopId(@Param("shopId") int shopId,@Param("page") int page,
     		@Param("rows") int rows);
+    int selectCountComment(@Param("shopId") int shopId);
 }

@@ -1,9 +1,11 @@
 package com.cn.hnust.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.cn.hnust.pojo.UserProduct;
 
 public interface UserProductMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(@Param("shopid") Integer shopid,@Param("userid") Integer userid);
 
     int insert(UserProduct record);
 

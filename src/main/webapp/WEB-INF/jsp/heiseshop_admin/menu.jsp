@@ -33,7 +33,7 @@ System.out.println(path);%>
   </li>
   <li>
    <ul class="menu-children">
-    <li><a href="product_list.html" title="商品列表" target="mainCont">商品列表</a></li>
+    <li><a href="productList?page=0&rows=10" title="商品列表" target="mainCont">商品列表</a></li>
     <li><a href="product_category.html" title="商品分类" target="mainCont">商品分类</a></li>
     <li><a href="recycle_bin.html" title="商品分类" target="mainCont">商品回收站</a></li>
     <li><a href="orderReturnList?page=0&rows=10" title="商品分类" target="mainCont">商品退款</a></li>

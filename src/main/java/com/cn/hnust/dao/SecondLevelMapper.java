@@ -19,4 +19,5 @@ public interface SecondLevelMapper {
     int updateByPrimaryKey(SecondLevel record);
     
     List<FirstResultMap> selectAllClassify();
+    List<SecondLevel> selectAllSecondClass();
 }

@@ -3,6 +3,7 @@ package com.cn.hnust.dao;
 import java.util.List;
 
 import com.cn.hnust.pojo.ClassiFy;
+import com.cn.hnust.pojo.SecondLevel;
 
 public interface ClassiFyMapper {
     int deleteByPrimaryKey(Integer id);
@@ -17,4 +18,6 @@ public interface ClassiFyMapper {
 
     int updateByPrimaryKey(ClassiFy record);
     List<ClassiFy> selectCount(Integer count);
+    List<ClassiFy> selectAllFirstClass();
+   
 }

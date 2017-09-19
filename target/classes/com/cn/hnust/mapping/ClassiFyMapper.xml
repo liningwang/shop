@@ -17,6 +17,11 @@
     from classify
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectAllFirstClass" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from classify
+  </select>
     <select id="selectCount" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

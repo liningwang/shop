@@ -153,11 +153,13 @@ public class ShopCardServiceImpl extends BaseService implements IShopCardService
 	}
 
 	@Override
-	public ProtocolBean deleteProduct(String id) {
+	public ProtocolBean deleteProduct(int userId,String id) {
 		// TODO Auto-generated method stub
 		String[] ids = id.split(",");
 		for(int i = 0;i < ids.length;i++) {
-			userProduct.deleteByPrimaryKey(Integer.valueOf(ids[i]));
+			System.out.println("userId" + userId +"id " + ids[i]);
+			int result = userProduct.deleteByPrimaryKey(Integer.valueOf(ids[i]),userId);
+			System.out.println("result "+result);
 		}
 		return genarateProtocol(null, null, "删除商品成功", 0);
 	}
@@ -260,6 +262,10 @@ public class ShopCardServiceImpl extends BaseService implements IShopCardService
 			orderP.setProductnum(bean.getProductNum());
 			orderP.setShopid(bean.getProductId());
 			orderP.setOrdernum(order.getOrdernum());
+			//更新库存
+			product.updateShopCountByPrimaryKey(-(bean.getProductNum()), bean.getProductId());
+			//更新销量
+//			product.updateShopsalesvolumeByPrimaryKey(bean.getProductNum(),bean.getProductId());
 			orderProduct.insertSelective(orderP);
 		}
 		ProtocolBean proB = new ProtocolBean();
@@ -513,6 +519,18 @@ public class ShopCardServiceImpl extends BaseService implements IShopCardService
 		orderMappper.deleteByOrderNum(orderNum);
 		int result = orderProduct.deleteByOrderNum(orderNum);
 		return result;
+	}
+
+	@Override
+	public int modifyProduct(Product shop) {
+		// TODO Auto-generated method stub
+		return product.updateByPrimaryKeySelective(shop);
+	}
+
+	@Override
+	public int addProduct(Product shop) {
+		// TODO Auto-generated method stub
+		return product.insertSelective(shop);
 	}
 
 }

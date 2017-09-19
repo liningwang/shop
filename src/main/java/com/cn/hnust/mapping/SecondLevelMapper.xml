@@ -29,6 +29,11 @@
     from second_level
     where secondLevelId = #{secondlevelid,jdbcType=INTEGER}
   </select>
+    <select id="selectAllSecondClass" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from second_level
+    </select>
   <select id="selectAllClassify" resultMap="FirstResultMap">
     select 
     <include refid="All_Column_List" />

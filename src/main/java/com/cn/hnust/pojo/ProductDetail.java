@@ -2,6 +2,8 @@ package com.cn.hnust.pojo;
 
 import java.util.Date;
 
+import com.wordnik.swagger.annotations.ApiModelProperty;
+
 public class ProductDetail {
     private Integer shopid;
 
@@ -16,15 +18,18 @@ public class ProductDetail {
     private Integer shoptype;
 
     private String shoppictureurl;
-
+    @ApiModelProperty(value = "库存", required = true)
+    private Integer shopCount;
+	@ApiModelProperty(value = "图文详情", required = true)
     private String shopgraphicdetails;
-
+    @ApiModelProperty(value = "商品一级分类id", required = true)
     private Integer classifyid;
-
+    @ApiModelProperty(value = "商品二级分类id", required = true)
     private Integer twoclassifyid;
-
+    @ApiModelProperty(value = "推荐商品", required = true)
     private Integer recommend;
-    
+    @ApiModelProperty(value = "评价总数", required = true)
+    private Integer evaluateNumber;
     private String evaluatetime;
 
     private Integer evaluategrade;
@@ -36,6 +41,22 @@ public class ProductDetail {
   private String evaluateHeadUrl;
     
     private String evaluateName;
+
+    public Integer getShopCount() {
+		return shopCount;
+	}
+
+	public void setShopCount(Integer shopCount) {
+		this.shopCount = shopCount;
+	}
+
+	public Integer getEvaluateNumber() {
+		return evaluateNumber;
+	}
+
+	public void setEvaluateNumber(Integer evaluateNumber) {
+		this.evaluateNumber = evaluateNumber;
+	}
 
 	public Integer getShopid() {
 		return shopid;

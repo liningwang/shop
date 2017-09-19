@@ -21,6 +21,7 @@ import com.alipay.api.request.AlipayTradeRefundRequest;
 import com.alipay.api.response.AlipayTradeRefundResponse;
 import com.cn.hnust.dao.CommentMapper;
 import com.cn.hnust.dao.OrderProductMapper;
+import com.cn.hnust.dao.ProductMapper;
 import com.cn.hnust.dao.ReturnOrderMapper;
 import com.cn.hnust.dao.ReturnReasonMapper;
 import com.cn.hnust.dao.ShopOrderMapper;
@@ -58,7 +59,8 @@ public class PersonServiceImpl extends BaseService implements IPersonService {
 	ReturnReasonMapper returnReason;
 	@Resource
 	CommentMapper comment;
-
+	@Resource
+	ProductMapper productMapper;
 	private String getReturnNo() {
 		SimpleDateFormat format = new SimpleDateFormat("MMddHHmmss", Locale.getDefault());
 		Date date = new Date();
@@ -276,6 +278,7 @@ public class PersonServiceImpl extends BaseService implements IPersonService {
 			bean.setResultCode(0);
 			//改变中间表的cancelState为2
 			orderProduct.acceptReturnShop(orderNum, shopId);
+			productMapper.updateShopCountByPrimaryKey(returnOr.getReturnCount(), returnOr.getShopid());
 			returnOr.setCancelState(2);
 			returnOr.setOrderType(2);
 			System.out.println(returnOr.toString());

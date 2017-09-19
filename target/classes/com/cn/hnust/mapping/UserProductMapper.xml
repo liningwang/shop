@@ -16,9 +16,9 @@
     from user_product
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" >
     delete from user_product
-    where id = #{id,jdbcType=INTEGER}
+    where shopId = #{shopid,jdbcType=INTEGER} and userId = #{userid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.cn.hnust.pojo.UserProduct" >
     insert into user_product (id, userId, shopId, 

@@ -6,13 +6,14 @@ import org.apache.ibatis.annotations.Param;
 
 import com.cn.hnust.pojo.Address;
 import com.cn.hnust.pojo.AdminOrderDetail;
+import com.cn.hnust.pojo.Product;
 import com.cn.hnust.pojo.ProductBean;
 import com.cn.hnust.pojo.ProtocolBean;
 import com.cn.hnust.pojo.ShopOrder;
 
 public interface IShopCardService {
 	public ProtocolBean getShopCard(int userId,int page,int rows);
-	public ProtocolBean deleteProduct(String id);
+	public ProtocolBean deleteProduct(int userId,String id);
 	public ProtocolBean modifyProductCount(int id,int count);
 	public ProtocolBean addAddress(Address addr);
 	public ProtocolBean modifyAddress(Address addr);
@@ -36,4 +37,6 @@ public interface IShopCardService {
 	public int getOrderCount();
 	public List<AdminOrderDetail> searchOrder(int orderType,String orderNum,String userName);
 	int deleteByOrderNum(String orderNum);
+	public int modifyProduct(Product shop);
+	public int addProduct(Product shop);
 }
